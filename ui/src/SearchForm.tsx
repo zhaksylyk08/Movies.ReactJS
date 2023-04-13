@@ -1,15 +1,21 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
-class SearchForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: this.props.inputValue,
-    };
-  }
+interface IProps {
+  inputValue: string;
+  onSearch: (inputValue: string) => void;
+}
 
-  handleChange = (event) => {
-    this.setState({ inputValue: event.target.value });
+interface IState {
+  inputValue: string;
+}
+
+export default class SearchForm extends Component<IProps, IState> {
+  state: IState = {
+    inputValue: this.props.inputValue,
+  };
+
+  handleChange = (event: any) => {
+    this.setState({ inputValue: event.target?.value });
   };
 
   handleSearch = () => {
@@ -35,5 +41,3 @@ class SearchForm extends Component {
     );
   }
 }
-
-export default SearchForm;
