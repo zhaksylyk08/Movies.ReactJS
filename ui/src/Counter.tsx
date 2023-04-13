@@ -1,12 +1,17 @@
-import React, { Component, createElement } from "react";
+import { Component, createElement } from "react";
 
-class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: 0,
-    };
-  }
+interface IProps {
+  initialValue: number;
+}
+
+interface IState {
+  inputValue: number;
+}
+
+export default class Counter extends Component<IProps, IState> {
+  state: IState = {
+    inputValue: this.props.initialValue,
+  };
 
   increment = () => {
     this.setState({ inputValue: this.state.inputValue + 1 });
@@ -26,5 +31,3 @@ class Counter extends Component {
     );
   }
 }
-
-export default Counter;

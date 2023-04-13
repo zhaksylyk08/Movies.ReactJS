@@ -1,18 +1,24 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
-class GenreSelect extends Component {
-  constructor(props) {
-    super(props);
+interface IProps {
+  genres: Array<string>;
+  onSelect: (genreName: string) => void;
+}
 
-    this.state = {
-      selectedGenreIndex: 0,
-    };
-  }
+interface IState {
+  selectedGenreIndex: number;
+}
 
-  selectGenre = (index) => {
+export default class GenreSelect extends Component<IProps, IState> {
+  state: IState = {
+    selectedGenreIndex: 0,
+  };
+
+  selectGenre = (index: number) => {
     this.setState({
       selectedGenreIndex: index,
     });
+
     this.props.onSelect(this.props.genres[index]);
   };
 
@@ -34,5 +40,3 @@ class GenreSelect extends Component {
     );
   }
 }
-
-export default GenreSelect;
